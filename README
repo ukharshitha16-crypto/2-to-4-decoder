@@ -1,0 +1,73 @@
+# 2-to-4 Decoder using Verilog
+
+## Description
+
+A 2-to-4 Decoder is a combinational digital circuit.
+
+It has:
+- 2 input lines
+- 4 output lines
+- 1 Enable input
+
+For each input combination, one output becomes HIGH when Enable is HIGH.
+
+## Truth Table
+
+| Enable | A1 | A0 | Y3 | Y2 | Y1 | Y0 |
+|--------|----|----|----|----|----|----|
+| 0 | X | X | 0 | 0 | 0 | 0 |
+| 1 | 0 | 0 | 0 | 0 | 0 | 1 |
+| 1 | 0 | 1 | 0 | 0 | 1 | 0 |
+| 1 | 1 | 0 | 0 | 1 | 0 | 0 |
+| 1 | 1 | 1 | 1 | 0 | 0 | 0 |
+
+## Inputs
+
+- A - 2-bit input
+- Enable - Enable input
+
+## Output
+
+- Y - 4-bit output
+
+## Working
+
+When Enable is HIGH:
+
+A = 00 → Y = 0001
+A = 01 → Y = 0010
+A = 10 → Y = 0100
+A = 11 → Y = 1000
+
+When Enable is LOW, all outputs are LOW.
+
+## Tools Used
+
+- Verilog HDL
+- Icarus Verilog
+- GTKWave
+- GitHub
+
+## Files
+
+- `decoder_2to4.v` - Design code
+- `decoder_2to4_tb.v` - Testbench
+- `simulation/` - Simulation waveform
+
+## Simulation
+
+Compile:
+
+iverilog -o decoder_sim decoder_2to4.v decoder_2to4_tb.v
+
+Run:
+
+vvp decoder_sim
+
+View waveform:
+
+gtkwave decoder_2to4.vcd
+
+## Result
+
+The 2-to-4 Decoder was successfully designed and simulated using Verilog HDL.

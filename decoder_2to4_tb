@@ -1,0 +1,50 @@
+`timescale 1ns/1ps
+
+module decoder_2to4_tb;
+
+reg [1:0] A;
+reg Enable;
+
+wire [3:0] Y;
+
+decoder_2to4 uut (
+    .A(A),
+    .Enable(Enable),
+    .Y(Y)
+);
+
+initial begin
+
+    $dumpfile("decoder_2to4.vcd");
+    $dumpvars(0, decoder_2to4_tb);
+
+    $monitor("Time=%0t Enable=%b A=%b Y=%b",
+             $time, Enable, A, Y);
+
+    // Enable = 0
+    Enable = 0;
+    A = 2'b00;
+    #10;
+
+    // A = 00 -> Y = 0001
+    Enable = 1;
+    A = 2'b00;
+    #10;
+
+    // A = 01 -> Y = 0010
+    A = 2'b01;
+    #10;
+
+    // A = 10 -> Y = 0100
+    A = 2'b10;
+    #10;
+
+    // A = 11 -> Y = 1000
+    A = 2'b11;
+    #10;
+
+    $finish;
+
+end
+
+endmodule
